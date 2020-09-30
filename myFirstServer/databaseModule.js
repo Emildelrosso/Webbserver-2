@@ -1,4 +1,3 @@
-//getting-started.js
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -10,11 +9,20 @@ db.once('open', function() {
 
 const personSchema = new mongoose.Schema({
     name: String,
+    email: String,
     age: Number,
   });
 
 const Person = mongoose.model('Person', personSchema);
 
-var emil = new Person({ name: "Emil", email: "a@a.a", age: 17})
-
-emil.save()
+exports.storePerson = (name, email, age) => {
+    var person = new Person({
+        name: name, 
+        email: email, 
+        age: age 
+       })
+    
+     person.save((result)=>{
+       console.log(result)
+     })
+ }
