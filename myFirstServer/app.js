@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const dbModule = require('./dbModule')
 const port = 3000
 
 const clientDir = __dirname + '\\client\\'
@@ -23,7 +24,7 @@ app.post('/', (req, res) => {
     console.log(req.body.name)
     console.log(req.body.email)
   
-    databaseModule.storePerson(req.body.name, req.body.email, req.body.age)
+    dbModule.storePerson(req.body.name, req.body.email, req.body.age)
   
     res.redirect('/')
   })
