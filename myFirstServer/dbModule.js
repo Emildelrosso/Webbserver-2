@@ -8,12 +8,10 @@ const MessageModel = require('./MessageModel')
   const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log("Great, you started your database")
+  // We're connected!
 });
 
 
-exports.storeElement = (element) => {
-  element.save(() => {
-    console.log("Successfully saved info in your database")
-  })
+exports.storeElement = async (element) => {
+ await element.save() 
 }
